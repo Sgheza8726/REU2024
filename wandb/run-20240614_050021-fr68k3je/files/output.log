@@ -1,0 +1,42 @@
+/home/efleisig/.local/lib/python3.10/site-packages/huggingface_hub/file_download.py:1132: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+Loading checkpoint shards: 100%|██████████████████████████████| 4/4 [00:02<00:00,  1.73it/s]
+Map: 100%|█████████████████████████████████████| 2701/2701 [00:00<00:00, 7028.92 examples/s]
+Map:   0%|                                                  | 0/2701 [00:00<?, ? examples/s]
+Traceback (most recent call last):
+  File "/home/efleisig/sams_reu/llama3_train.py", line 36, in <module>
+    tokenized_datasets = tokenized_datasets.map(pad_sequences, batched=True)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/datasets/arrow_dataset.py", line 602, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/datasets/arrow_dataset.py", line 567, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/datasets/arrow_dataset.py", line 3156, in map
+    for rank, done, content in Dataset._map_single(**dataset_kwargs):
+  File "/home/efleisig/.local/lib/python3.10/site-packages/datasets/arrow_dataset.py", line 3547, in _map_single
+    batch = apply_function_on_filtered_inputs(
+  File "/home/efleisig/.local/lib/python3.10/site-packages/datasets/arrow_dataset.py", line 3416, in apply_function_on_filtered_inputs
+    processed_inputs = function(*fn_args, *additional_args, **fn_kwargs)
+  File "/home/efleisig/sams_reu/llama3_train.py", line 33, in pad_sequences
+    examples[key] = [ex + [tokenizer.pad_token_id] * (max_length - len(ex)) if len(ex) < max_length else ex[:max_length] for ex in examples[key]]
+  File "/home/efleisig/sams_reu/llama3_train.py", line 33, in <listcomp>
+    examples[key] = [ex + [tokenizer.pad_token_id] * (max_length - len(ex)) if len(ex) < max_length else ex[:max_length] for ex in examples[key]]
+TypeError: can only concatenate str (not "list") to str
+Traceback (most recent call last):
+  File "/home/efleisig/sams_reu/llama3_train.py", line 36, in <module>
+    tokenized_datasets = tokenized_datasets.map(pad_sequences, batched=True)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/datasets/arrow_dataset.py", line 602, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/datasets/arrow_dataset.py", line 567, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/datasets/arrow_dataset.py", line 3156, in map
+    for rank, done, content in Dataset._map_single(**dataset_kwargs):
+  File "/home/efleisig/.local/lib/python3.10/site-packages/datasets/arrow_dataset.py", line 3547, in _map_single
+    batch = apply_function_on_filtered_inputs(
+  File "/home/efleisig/.local/lib/python3.10/site-packages/datasets/arrow_dataset.py", line 3416, in apply_function_on_filtered_inputs
+    processed_inputs = function(*fn_args, *additional_args, **fn_kwargs)
+  File "/home/efleisig/sams_reu/llama3_train.py", line 33, in pad_sequences
+    examples[key] = [ex + [tokenizer.pad_token_id] * (max_length - len(ex)) if len(ex) < max_length else ex[:max_length] for ex in examples[key]]
+  File "/home/efleisig/sams_reu/llama3_train.py", line 33, in <listcomp>
+    examples[key] = [ex + [tokenizer.pad_token_id] * (max_length - len(ex)) if len(ex) < max_length else ex[:max_length] for ex in examples[key]]
+TypeError: can only concatenate str (not "list") to str

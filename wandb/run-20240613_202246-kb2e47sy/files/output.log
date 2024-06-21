@@ -1,0 +1,76 @@
+  0%|                                                              | 0/4053 [00:00<?, ?it/s]Traceback (most recent call last):
+  File "/home/efleisig/sams_reu/llama3_train.py", line 55, in <module>
+    trainer.train()
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/trainer.py", line 1539, in train
+    return inner_training_loop(
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/trainer.py", line 1869, in _inner_training_loop
+    tr_loss_step = self.training_step(model, inputs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/trainer.py", line 2772, in training_step
+    loss = self.compute_loss(model, inputs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/trainer.py", line 2795, in compute_loss
+    outputs = model(**inputs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/accelerate/utils/operations.py", line 817, in forward
+    return model_forward(*args, **kwargs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/accelerate/utils/operations.py", line 805, in __call__
+    return convert_to_fp32(self.model_forward(*args, **kwargs))
+  File "/home/efleisig/.local/lib/python3.10/site-packages/torch/amp/autocast_mode.py", line 14, in decorate_autocast
+    return func(*args, **kwargs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 1183, in forward
+    outputs = self.model(
+  File "/home/efleisig/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 1070, in forward
+    layer_outputs = decoder_layer(
+  File "/home/efleisig/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 798, in forward
+    hidden_states, self_attn_weights, present_key_value = self.self_attn(
+  File "/home/efleisig/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 386, in forward
+    query_states = self.q_proj(hidden_states)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/torch/nn/modules/linear.py", line 114, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: CUDA error: CUBLAS_STATUS_NOT_INITIALIZED when calling `cublasCreate(handle)`
+Traceback (most recent call last):
+  File "/home/efleisig/sams_reu/llama3_train.py", line 55, in <module>
+    trainer.train()
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/trainer.py", line 1539, in train
+    return inner_training_loop(
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/trainer.py", line 1869, in _inner_training_loop
+    tr_loss_step = self.training_step(model, inputs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/trainer.py", line 2772, in training_step
+    loss = self.compute_loss(model, inputs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/trainer.py", line 2795, in compute_loss
+    outputs = model(**inputs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/accelerate/utils/operations.py", line 817, in forward
+    return model_forward(*args, **kwargs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/accelerate/utils/operations.py", line 805, in __call__
+    return convert_to_fp32(self.model_forward(*args, **kwargs))
+  File "/home/efleisig/.local/lib/python3.10/site-packages/torch/amp/autocast_mode.py", line 14, in decorate_autocast
+    return func(*args, **kwargs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 1183, in forward
+    outputs = self.model(
+  File "/home/efleisig/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 1070, in forward
+    layer_outputs = decoder_layer(
+  File "/home/efleisig/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 798, in forward
+    hidden_states, self_attn_weights, present_key_value = self.self_attn(
+  File "/home/efleisig/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 386, in forward
+    query_states = self.q_proj(hidden_states)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/torch/nn/modules/linear.py", line 114, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: CUDA error: CUBLAS_STATUS_NOT_INITIALIZED when calling `cublasCreate(handle)`

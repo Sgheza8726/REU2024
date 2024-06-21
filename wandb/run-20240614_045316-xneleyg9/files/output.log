@@ -1,0 +1,45 @@
+/home/efleisig/.local/lib/python3.10/site-packages/huggingface_hub/file_download.py:1132: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+
+Loading checkpoint shards: 100%|██████████████████████████████| 4/4 [00:02<00:00,  1.66it/s]
+  0%|                                                               | 0/405 [00:00<?, ?it/s]Traceback (most recent call last):
+  File "/home/efleisig/sams_reu/llama3_train.py", line 58, in <module>
+    trainer.train()
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/trainer.py", line 1539, in train
+    return inner_training_loop(
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/trainer.py", line 1836, in _inner_training_loop
+    for step, inputs in enumerate(epoch_iterator):
+  File "/home/efleisig/.local/lib/python3.10/site-packages/accelerate/data_loader.py", line 452, in __iter__
+    current_batch = next(dataloader_iter)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 628, in __next__
+    data = self._next_data()
+  File "/home/efleisig/.local/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 671, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "/home/efleisig/.local/lib/python3.10/site-packages/torch/utils/data/_utils/fetch.py", line 61, in fetch
+    return self.collate_fn(data)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/data/data_collator.py", line 92, in default_data_collator
+    return torch_default_data_collator(features)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/data/data_collator.py", line 158, in torch_default_data_collator
+    batch[k] = torch.tensor([f[k] for f in features])
+ValueError: expected sequence of length 200 at dim 1 (got 233)
+Traceback (most recent call last):
+  File "/home/efleisig/sams_reu/llama3_train.py", line 58, in <module>
+    trainer.train()
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/trainer.py", line 1539, in train
+    return inner_training_loop(
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/trainer.py", line 1836, in _inner_training_loop
+    for step, inputs in enumerate(epoch_iterator):
+  File "/home/efleisig/.local/lib/python3.10/site-packages/accelerate/data_loader.py", line 452, in __iter__
+    current_batch = next(dataloader_iter)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 628, in __next__
+    data = self._next_data()
+  File "/home/efleisig/.local/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 671, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "/home/efleisig/.local/lib/python3.10/site-packages/torch/utils/data/_utils/fetch.py", line 61, in fetch
+    return self.collate_fn(data)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/data/data_collator.py", line 92, in default_data_collator
+    return torch_default_data_collator(features)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/data/data_collator.py", line 158, in torch_default_data_collator
+    batch[k] = torch.tensor([f[k] for f in features])
+ValueError: expected sequence of length 200 at dim 1 (got 233)

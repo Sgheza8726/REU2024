@@ -1,0 +1,67 @@
+/home/efleisig/.local/lib/python3.10/site-packages/huggingface_hub/file_download.py:1132: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+Loading checkpoint shards:   0%|                                      | 0/4 [00:00<?, ?it/s]
+Maximum token ID in the dataset: 128256
+
+Loading checkpoint shards: 100%|██████████████████████████████| 4/4 [00:01<00:00,  2.21it/s]
+  0%|                                                               | 0/507 [00:00<?, ?it/s]Traceback (most recent call last):
+  File "/home/efleisig/sams_reu/llama3_train.py", line 83, in <module>
+    trainer.train()
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/trainer.py", line 1539, in train
+    return inner_training_loop(
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/trainer.py", line 1869, in _inner_training_loop
+    tr_loss_step = self.training_step(model, inputs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/trainer.py", line 2772, in training_step
+    loss = self.compute_loss(model, inputs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/trainer.py", line 2795, in compute_loss
+    outputs = model(**inputs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 1183, in forward
+    outputs = self.model(
+  File "/home/efleisig/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 1070, in forward
+    layer_outputs = decoder_layer(
+  File "/home/efleisig/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 798, in forward
+    hidden_states, self_attn_weights, present_key_value = self.self_attn(
+  File "/home/efleisig/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 404, in forward
+    query_states, key_states = apply_rotary_pos_emb(query_states, key_states, cos, sin, position_ids)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 234, in apply_rotary_pos_emb
+    q_embed = (q * cos) + (rotate_half(q) * sin)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 50.00 MiB (GPU 0; 47.54 GiB total capacity; 46.94 GiB already allocated; 10.62 MiB free; 47.11 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+Traceback (most recent call last):
+  File "/home/efleisig/sams_reu/llama3_train.py", line 83, in <module>
+    trainer.train()
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/trainer.py", line 1539, in train
+    return inner_training_loop(
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/trainer.py", line 1869, in _inner_training_loop
+    tr_loss_step = self.training_step(model, inputs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/trainer.py", line 2772, in training_step
+    loss = self.compute_loss(model, inputs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/trainer.py", line 2795, in compute_loss
+    outputs = model(**inputs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 1183, in forward
+    outputs = self.model(
+  File "/home/efleisig/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 1070, in forward
+    layer_outputs = decoder_layer(
+  File "/home/efleisig/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 798, in forward
+    hidden_states, self_attn_weights, present_key_value = self.self_attn(
+  File "/home/efleisig/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 404, in forward
+    query_states, key_states = apply_rotary_pos_emb(query_states, key_states, cos, sin, position_ids)
+  File "/home/efleisig/.local/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 234, in apply_rotary_pos_emb
+    q_embed = (q * cos) + (rotate_half(q) * sin)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 50.00 MiB (GPU 0; 47.54 GiB total capacity; 46.94 GiB already allocated; 10.62 MiB free; 47.11 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF

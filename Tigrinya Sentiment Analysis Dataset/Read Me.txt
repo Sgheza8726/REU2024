@@ -1,0 +1,28 @@
+
+First sentiment analysis (with two classes) dataset for Tigrinya language. This train set is constructed automatically while the test set labeled manually. 
+
+
+0 : for negative sentiment
+1 : for positive sentiment
+
+
+train size: 49374 (25031 negative and 24343 positive)
+test size:  4000 (2000 negative and 2000 positive)
+
+
+For more information on our experiments and results please check our paper:
+
+Title: Transferring Monolingual Model to Low-Resource Language: The Case of Tigrinya
+Link: https://arxiv.org/pdf/2006.07698.pdf
+Authors:  Abrhalei Frezghi Tela, Abraham Woubie,Ville Hautamaki 
+
+Please consider citing the paper.
+
+@misc{tela2020transferring,
+      title={Transferring Monolingual Model to Low-Resource Language: The Case of Tigrinya}, 
+      author={Abrhalei Tela and Abraham Woubie and Ville Hautamaki},
+      year={2020},
+      eprint={2006.07698},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}

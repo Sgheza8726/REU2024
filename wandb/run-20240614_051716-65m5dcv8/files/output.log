@@ -1,0 +1,63 @@
+/home/efleisig/.local/lib/python3.10/site-packages/huggingface_hub/file_download.py:1132: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+Map: 100%|█████████████████████████████████████| 2701/2701 [00:00<00:00, 5745.14 examples/s]
+Maximum token ID in the dataset: 128256
+Vocabulary size of the model: 128000
+
+Loading checkpoint shards: 100%|██████████████████████████████| 4/4 [00:02<00:00,  1.43it/s]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

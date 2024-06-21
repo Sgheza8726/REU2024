@@ -1,0 +1,36 @@
+Traceback (most recent call last):
+  File "/home/efleisig/sams_reu/llama3_train.py", line 11, in <module>
+    dataset = load_dataset('json', data_files={
+  File "/home/efleisig/.local/lib/python3.10/site-packages/datasets/load.py", line 2587, in load_dataset
+    builder_instance = load_dataset_builder(
+  File "/home/efleisig/.local/lib/python3.10/site-packages/datasets/load.py", line 2259, in load_dataset_builder
+    dataset_module = dataset_module_factory(
+  File "/home/efleisig/.local/lib/python3.10/site-packages/datasets/load.py", line 1799, in dataset_module_factory
+    ).get_module()
+  File "/home/efleisig/.local/lib/python3.10/site-packages/datasets/load.py", line 1141, in get_module
+    data_files = DataFilesDict.from_patterns(
+  File "/home/efleisig/.local/lib/python3.10/site-packages/datasets/data_files.py", line 715, in from_patterns
+    DataFilesList.from_patterns(
+  File "/home/efleisig/.local/lib/python3.10/site-packages/datasets/data_files.py", line 620, in from_patterns
+    resolve_pattern(
+  File "/home/efleisig/.local/lib/python3.10/site-packages/datasets/data_files.py", line 407, in resolve_pattern
+    raise FileNotFoundError(error_msg)
+FileNotFoundError: Unable to find '/home/efleisig/sams_reu/custom_huggingface_dataset/train/train.json'
+Traceback (most recent call last):
+  File "/home/efleisig/sams_reu/llama3_train.py", line 11, in <module>
+    dataset = load_dataset('json', data_files={
+  File "/home/efleisig/.local/lib/python3.10/site-packages/datasets/load.py", line 2587, in load_dataset
+    builder_instance = load_dataset_builder(
+  File "/home/efleisig/.local/lib/python3.10/site-packages/datasets/load.py", line 2259, in load_dataset_builder
+    dataset_module = dataset_module_factory(
+  File "/home/efleisig/.local/lib/python3.10/site-packages/datasets/load.py", line 1799, in dataset_module_factory
+    ).get_module()
+  File "/home/efleisig/.local/lib/python3.10/site-packages/datasets/load.py", line 1141, in get_module
+    data_files = DataFilesDict.from_patterns(
+  File "/home/efleisig/.local/lib/python3.10/site-packages/datasets/data_files.py", line 715, in from_patterns
+    DataFilesList.from_patterns(
+  File "/home/efleisig/.local/lib/python3.10/site-packages/datasets/data_files.py", line 620, in from_patterns
+    resolve_pattern(
+  File "/home/efleisig/.local/lib/python3.10/site-packages/datasets/data_files.py", line 407, in resolve_pattern
+    raise FileNotFoundError(error_msg)
+FileNotFoundError: Unable to find '/home/efleisig/sams_reu/custom_huggingface_dataset/train/train.json'
