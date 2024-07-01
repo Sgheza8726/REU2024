@@ -12,7 +12,7 @@ model = AutoModelForMaskedLM.from_pretrained(model_name)
 
 #load train and eval datasets
 train_dataset_path = '/home/efleisig/sams_reu/custom_huggingface_dataset/train'
-eval_dataset_path = '/home/efleisig/sams_reu/custom_huggingface_dataset/eval'
+eval_dataset_path = '/home/efleisig/sams_reu/custom_huggingface_dataset/dev'
 train_dataset = load_from_disk(train_dataset_path)
 eval_dataset = load_from_disk(eval_dataset_path)
 
@@ -26,11 +26,11 @@ def preprocess_function(examples):
 tokenized_train_dataset = train_dataset.map(preprocess_function, batched=True)
 tokenized_eval_dataset = eval_dataset.map(preprocess_function, batched=True)
 
-#set up training arguments
+#training arguments
 training_args = TrainingArguments(
     output_dir="./results",
     evaluation_strategy="steps",
-    eval_steps=500,
+    eval_steps=500,  #evaluate every 500 steps
     learning_rate=2e-5,
     per_device_train_batch_size=1,
     num_train_epochs=10,
