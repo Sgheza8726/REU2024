@@ -26,7 +26,7 @@ def preprocess_function(examples):
 tokenized_train_dataset = train_dataset.map(preprocess_function, batched=True)
 tokenized_dev_dataset = dev_dataset.map(preprocess_function, batched=True)
 
-#set up training arguments
+#training arguments
 training_args = TrainingArguments(
     output_dir="./results",
     evaluation_strategy="epoch",
