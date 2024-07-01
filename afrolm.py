@@ -10,11 +10,11 @@ model_name = "bonadossou/afrolm_active_learning"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForMaskedLM.from_pretrained(model_name)
 
-#load train and dev datasets
+#load train and eval datasets
 train_dataset_path = '/home/efleisig/sams_reu/custom_huggingface_dataset/train'
-dev_dataset_path = '/home/efleisig/sams_reu/custom_huggingface_dataset/dev'
+eval_dataset_path = '/home/efleisig/sams_reu/custom_huggingface_dataset/eval'
 train_dataset = load_from_disk(train_dataset_path)
-dev_dataset = load_from_disk(dev_dataset_path)
+eval_dataset = load_from_disk(eval_dataset_path)
 
 #preprocess function
 def preprocess_function(examples):
@@ -24,21 +24,20 @@ def preprocess_function(examples):
 
 #tokenize datasets
 tokenized_train_dataset = train_dataset.map(preprocess_function, batched=True)
-tokenized_dev_dataset = dev_dataset.map(preprocess_function, batched=True)
+tokenized_eval_dataset = eval_dataset.map(preprocess_function, batched=True)
 
-#training arguments
+#set up training arguments
 training_args = TrainingArguments(
     output_dir="./results",
-    evaluation_strategy="epoch",
+    evaluation_strategy="steps",
+    eval_steps=500,
     learning_rate=2e-5,
     per_device_train_batch_size=1,
-    per_device_eval_batch_size=1,
     num_train_epochs=10,
-    report_to="wandb",
+    weight_decay=0.01,
     logging_dir='./logs',
-    logging_steps=10,
-    save_steps=500,
-    eval_steps=500
+    report_to="wandb",
+    gradient_checkpointing=True,
 )
 
 #initialize trainer
@@ -46,7 +45,7 @@ trainer = Trainer(
     model=model,
     args=training_args,
     train_dataset=tokenized_train_dataset,
-    eval_dataset=tokenized_dev_dataset,
+    eval_dataset=tokenized_eval_dataset,
 )
 
 #train the model
