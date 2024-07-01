@@ -16,8 +16,10 @@ args = parser.parse_args()
 wandb.init(project="llama3-finetuning")
 
 #load the dataset
-dataset_path = '/home/efleisig/sams_reu/custom_huggingface_dataset/train'
-dataset = load_from_disk(dataset_path)
+train_dataset_path = '/home/efleisig/sams_reu/custom_huggingface_dataset/train'
+train_dataset = load_from_disk(train_dataset_path)
+dev_dataset_path = '/home/efleisig/sams_reu/custom_huggingface_dataset/dev'
+dev_dataset = load_from_disk(dev_dataset_path)
 
 #initialize the model and tokenizer
 model_name = "meta-llama/Meta-Llama-3-8B"
@@ -57,7 +59,8 @@ max_length = 200
 def tokenize_function(examples):
     return tokenizer(examples['text'], padding="max_length", truncation=True, max_length=max_length)
 
-tokenized_datasets = dataset.map(tokenize_function, batched=True)
+train_dataset = train_dataset.map(tokenize_function, batched=True)
+dev_dataset = dev_dataset.map(tokenize_function, batched=True)
 
 #ensure all sequences are padded to the same length
 def pad_sequences(examples):
@@ -73,13 +76,15 @@ def pad_sequences(examples):
         ]
     return examples
 
-tokenized_datasets = tokenized_datasets.map(pad_sequences, batched=True)
+train_dataset = train_dataset.map(pad_sequences, batched=True)
+dev_dataset = dev_dataset.map(pad_sequences, batched=True)
 
 #add labels
-tokenized_datasets = tokenized_datasets.map(lambda examples: {'labels': examples['input_ids']}, batched=True)
+train_dataset = train_dataset.map(lambda examples: {'labels': examples['input_ids']}, batched=True)
+dev_dataset = dev_dataset.map(lambda examples: {'labels': examples['input_ids']}, batched=True)
 
 #debugging: check the maximum token id in the tokenized dataset
-max_token_id = max([max(ex) for ex in tokenized_datasets['input_ids']])
+max_token_id = max([max(ex) for ex in train_dataset['input_ids']])
 vocab_size = tokenizer.vocab_size
 print(f"Maximum token id in the dataset: {max_token_id}")
 print(f"Vocabulary size of the model: {vocab_size}")
@@ -91,20 +96,21 @@ if max_token_id >= vocab_size:
     tokenizer.add_tokens(new_tokens)
     model.resize_token_embeddings(len(tokenizer))
 
-# Set use_cache to False directly in the model config
+#Set use_cache to False directly in the model config
 model.config.use_cache = False
 
 #training arguments
 training_args = TrainingArguments(
     output_dir="./results",
-    evaluation_strategy="no",
+    evaluation_strategy="steps",
+    eval_steps=500,  #Evaluate every 500 steps
     learning_rate=2e-5,
     per_device_train_batch_size=args.batch_size,
-    num_train_epochs=3,
+    num_train_epochs=10,
     weight_decay=0.01,
     logging_dir='./logs',
     report_to="wandb",
-    gradient_checkpointing=True
+    gradient_checkpointing=True,
 )
 
 #custom training step to ensure tensors require gradients
@@ -126,10 +132,11 @@ class CustomTrainer(Trainer):
 trainer = CustomTrainer(
     model=model,
     args=training_args,
-    train_dataset=tokenized_datasets
+    train_dataset=train_dataset,
+    eval_dataset=dev_dataset
 )
 
-#ensure all model parameters that are of floating point dtype require gradients
+#all model parameters that are of floating point dtype require gradients
 for param in model.parameters():
     if param.dtype in [torch.float32, torch.float64, torch.float16]:
         param.requires_grad = True
