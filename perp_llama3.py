@@ -3,16 +3,16 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 from datasets import load_from_disk
 import evaluate
 
-#load the best checkpoint
+#best checkpoint and tokenizer from fine-tuned model
 model_name = "./results/checkpoint-13500"
-tokenizer = AutoTokenizer.from_pretrained(model_name)
+tokenizer = AutoTokenizer.from_pretrained('./fine-tuned-llama3-8b')
 model = AutoModelForCausalLM.from_pretrained(model_name)
 
 #load test dataset
 test_dataset_path = '/home/efleisig/sams_reu/custom_huggingface_dataset/test'
 test_dataset = load_from_disk(test_dataset_path)
 
-#preprocess the test dataset
+#preprocess test dataset
 def preprocess_function(examples):
     return tokenizer(examples['text'], padding="max_length", truncation=True, max_length=200)
 
